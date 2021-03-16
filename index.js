@@ -15,6 +15,13 @@ app.get('/api/jobs', (request, response) =>{
   response.json(dataJobs)
 })
 
+app.get('/api/jobs/filterByKeyWord/:keyword', (request, response) =>{
+  const keyword = request.params.keyword
+  const filterList = dataJobs.filter(job => (job.type.toLowerCase() === keyword.toLowerCase() ||
+   job.company.toLowerCase() === keyword.toLowerCase()))
+  response.json(filterList)
+})
+
 app.listen(PORT, ()=>{
   console.log('la app está corriendo', PORT)
 })
